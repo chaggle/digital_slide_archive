@@ -168,7 +168,8 @@ RUN cd /opt && \
     true
 
 RUN cd /opt && \
-    git clone -b girder-5 https://github.com/DigitalSlideArchive/HistomicsUI && \
+    git clone -b girder-5 https://github.com/laodoudou/HistomicsUI && \
+    mv histomics-overview HistomicsUI && \
     cd /opt/HistomicsUI && \
     # Unpin since we are using local installs \
     sed -i 's/==1\.3.*'\''/'\''/g' setup.py && \
