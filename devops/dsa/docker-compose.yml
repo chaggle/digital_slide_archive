@@ -1,7 +1,7 @@
 ---
 services:
   girder:
-    image: dsarchive/dsa_common
+    image: dsa:latest
     build:
       context: ../..
       # We use this to optionally set version information during the build
@@ -142,7 +142,7 @@ services:
       timeout: 30s
       retries: 3
   worker:
-    image: dsarchive/dsa_common
+    image: dsa:latest
     build:
       context: ../..
       # We use this to optionally set version information during the build
