@@ -58,46 +58,48 @@ RUN python --version && \
 
 # Clone packages and pip install what we want to be local
 RUN cd /opt && \
-    git clone https://github.com/girder/girder && \
+    git clone https://github.com/chaggle/girder && \
     cd /opt/girder && \
     pip install --no-cache-dir -e .[mount] && \
-    pip install --no-cache-dir -e clients/python && \
-    \
-    cd /opt && \
+    pip install --no-cache-dir -e clients/python
+
+RUN cd /opt && \
     git clone https://github.com/girder/girder_worker_utils && \
     cd /opt/girder_worker_utils && \
-    pip install --no-cache-dir -e . && \
-    \
-    cd /opt && \
+    pip install --no-cache-dir -e . 
+    
+RUN cd /opt && \
     git clone https://github.com/girder/girder_worker && \
     cd /opt/girder_worker && \
-    pip install --no-cache-dir -e .[girder,worker] && \
-    \
-    cd /opt && \
+    pip install --no-cache-dir -e .[girder,worker] 
+
+RUN cd /opt && \
     git clone https://github.com/DigitalSlideArchive/import-tracker.git && \
     cd /opt/import-tracker && \
-    pip install --no-cache-dir -e . && \
-    \
-    cd /opt && \
+    pip install --no-cache-dir -e .
+
+RUN cd /opt && \
     git clone https://github.com/girder/slicer_cli_web && \
     cd /opt/slicer_cli_web && \
-    pip install --no-cache-dir -e . && \
-    \
-    cd /opt && \
+    pip install --no-cache-dir -e . 
+    
+RUN cd /opt && \
     git clone https://github.com/girder/large_image && \
     cd /opt/large_image && \
     pip install --no-cache-dir --find-links https://girder.github.io/large_image_wheels -e .[memcached] -rrequirements-dev.txt && \
     # Reduce docker size by de-duplicating some libraries that get installed \
-    rdfind -minsize 32768 -makehardlinks true -makeresultsfile false /opt/venv && \
-    \
-    cd /opt && \
-    git clone https://github.com/DigitalSlideArchive/HistomicsUI && \
+    rdfind -minsize 32768 -makehardlinks true -makeresultsfile false /opt/venv
+
+RUN cd /opt && \
+    git clone https://github.com/laodoudou/histomics-overview.git && \
+    mv histomics-overview HistomicsUI && \
+    echo "5" && \
     cd /opt/HistomicsUI && \
     pip install --no-cache-dir -e .[analysis] && \
     \
     find /opt/venv \( -name '*.so' -o -name '*.a' -o -name '*.so.*' \) -exec bash -c "strip -p -D --strip-unneeded {} -o /tmp/striped; if ! cmp {} /tmp/striped; then cp /tmp/striped {}; fi; rm -f /tmp/striped" \; && \
     rdfind -minsize 32768 -makehardlinks true -makeresultsfile false /opt/venv && \
-    find / -xdev -type d -name __pycache__ -exec rm -r {} \+
+    find / -xdev -type d -name __pycache__ -exec rm -r {} \+ 
 
 # Install additional girder plugins
 RUN pip install --no-cache-dir \
@@ -118,7 +120,7 @@ RUN NPM_CONFIG_FUND=false NPM_CONFIG_AUDIT=false NPM_CONFIG_AUDIT_LEVEL=high NPM
     find /opt -xdev -name node_modules -exec rm -rf {} \+ && \
     find /opt -name package-lock.json -exec rm -f {} \+ && \
     rm -rf /tmp/* ~/.npm && \
-    find / -xdev -type d -name __pycache__ -exec rm -r {} \+
+    find / -xdev -type d -name __pycache__ -exec rm -r {} \+ 
 
 # Install phantomjs for testing
 RUN npm install -g phantomjs-prebuilt --unsafe-perm && \
