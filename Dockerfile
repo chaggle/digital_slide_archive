@@ -93,7 +93,7 @@ RUN cd /opt && \
 RUN cd /opt && \
     git clone https://github.com/laodoudou/histomics-overview.git && \
     mv histomics-overview HistomicsUI && \
-    echo "5" && \
+    echo "6" && \
     cd /opt/HistomicsUI && \
     pip install --no-cache-dir -e .[analysis] && \
     \
@@ -121,10 +121,6 @@ RUN NPM_CONFIG_FUND=false NPM_CONFIG_AUDIT=false NPM_CONFIG_AUDIT_LEVEL=high NPM
     find /opt -name package-lock.json -exec rm -f {} \+ && \
     rm -rf /tmp/* ~/.npm && \
     find / -xdev -type d -name __pycache__ -exec rm -r {} \+ 
-
-# Install phantomjs for testing
-RUN npm install -g phantomjs-prebuilt --unsafe-perm && \
-    rm -rf /tmp/* ~/.npm
 
 # When running the worker, adjust some settings
 RUN echo 'task_reject_on_worker_lost = True' >> /opt/girder_worker/girder_worker/celeryconfig.py
