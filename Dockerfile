@@ -93,7 +93,7 @@ RUN cd /opt && \
 RUN cd /opt && \
     git clone https://github.com/laodoudou/histomics-overview.git && \
     mv histomics-overview HistomicsUI && \
-    echo "7" && \
+    echo "10" && \
     cd /opt/HistomicsUI && \
     pip install --no-cache-dir -e .[analysis] && \
     \
