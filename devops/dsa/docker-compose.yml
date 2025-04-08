@@ -29,6 +29,7 @@ services:
       # Mount options can be used to, for instance, add diskcache (e.g.,
       #  "-o diskcache,diskcache_size_limit=2147483648")
       DSA_GIRDER_MOUNT_OPTIONS: ${DSA_GIRDER_MOUNT_OPTIONS:-}
+      SLICER_CLI_WEB_MONAI_LABEL_SERVER: http://10.47.92.200:9200
       # You can also set girder settings here:
       # GIRDER_SETTING_CORE_HTTP_ONLY_COOKIES: true
       # GIRDER_SETTING_HISTOMICSUI_LOGIN_SESSION_EXPIRY_MINUTES: 15
