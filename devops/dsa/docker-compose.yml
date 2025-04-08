@@ -158,7 +158,6 @@ services:
       DSA_PROVISION_YAML: ${DSA_PROVISION_YAML:-/opt/digital_slide_archive/devops/dsa/provision.yaml}
       C_FORCE_ROOT: true
       TMPDIR:
-
       # See comments about authorizing docker repositories above
       # DOCKER_CONFIG: /.docker
     restart: unless-stopped
