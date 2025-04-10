@@ -172,6 +172,7 @@ RUN cd /opt && \
     mv histomics-overview HistomicsUI && \
     cd /opt/HistomicsUI && \
     # Unpin since we are using local installs \
+    git checkout dev-histomincs && \
     sed -i 's/==1\.3.*'\''/'\''/g' setup.py && \
     pip install --no-cache-dir -e .[analysis] && \
     cd /opt/HistomicsUI/histomicsui/web_client && \

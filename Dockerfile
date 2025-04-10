@@ -93,8 +93,9 @@ RUN cd /opt && \
 RUN cd /opt && \
     git clone https://github.com/laodoudou/histomics-overview.git && \
     mv histomics-overview HistomicsUI && \
-    echo "1" && \
+    echo "26" && \
     cd /opt/HistomicsUI && \
+    git checkout dev-histomincs && \
     pip install --no-cache-dir -e .[analysis] && \
     \
     find /opt/venv \( -name '*.so' -o -name '*.a' -o -name '*.so.*' \) -exec bash -c "strip -p -D --strip-unneeded {} -o /tmp/striped; if ! cmp {} /tmp/striped; then cp /tmp/striped {}; fi; rm -f /tmp/striped" \; && \
